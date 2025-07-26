@@ -43,7 +43,7 @@ eksctl create cluster \
 --nodes-max 4 \
 --managed
 ```
-    - **参数解释**：
+    - 参数解释：
         - `--name`：指定集群的名称，这里为`my-eks-cluster` ，可自行定义。
         - `--region`：指定集群所在的AWS区域，如`us-west-2` 。
         - `--nodegroup-name`：指定节点组的名称，`standard-workers`是示例名称。
@@ -75,7 +75,7 @@ spec:
         ports:
         - containerPort: 80
 ```
-    - **内容解释**：
+    - 内容解释：
         - `apiVersion`：指定Kubernetes API的版本。
         - `kind`：指定资源类型为`Deployment` 。
         - `metadata.name`：Deployment的名称为`nginx-deployment` 。
@@ -107,14 +107,14 @@ spec:
   selector:
     app: nginx
 ```
-    - **内容解释**：
+    - 内容解释：
         - `apiVersion`和`kind`：指定API版本和资源类型为`Service` 。
         - `metadata.name`：Service的名称为`nginx-service` 。
         - `spec.type`：指定Service的类型为`LoadBalancer` ，这会在AWS中创建一个弹性负载均衡器。
         - `spec.ports`：定义Service暴露的端口和目标Pod的端口。
         - `spec.selector`：选择标签为`app: nginx`的Pod作为后端服务。
-    - **创建Service**：运行`kubectl apply -f nginx-service.yaml` 。
-    - **获取访问地址**：运行`kubectl get services` ，找到`nginx-service`对应的`EXTERNAL-IP` ，在浏览器中访问该IP地址，应该能够看到Nginx的欢迎页面。
+    - 创建Service：运行`kubectl apply -f nginx-service.yaml` 。
+    - 获取访问地*：运行`kubectl get services` ，找到`nginx-service`对应的`EXTERNAL-IP` ，在浏览器中访问该IP地址，应该能够看到Nginx的欢迎页面。
 
 ### 五、后续管理与维护
 1. **监控集群和应用**：可以使用工具如Prometheus和Grafana来监控EKS集群和应用的性能指标，如CPU使用率、内存使用率、网络流量等。具体配置步骤较为复杂，涉及到在集群中部署Prometheus和Grafana的相关组件，并进行数据源配置等操作。
@@ -140,10 +140,10 @@ spec:
         type: Utilization
         averageUtilization: 50
 ```
-    - **内容解释**：
+    - 内容解释：
         - `apiVersion`和`kind`：指定API版本和资源类型为`HorizontalPodAutoscaler` 。
         - `metadata.name`：HPA的名称为`nginx-hpa` 。
         - `scaleTargetRef`：指定要扩展的目标Deployment。
         - `minReplicas`和`maxReplicas`：分别指定Pod数量的最小值和最大值。
         - `metrics`：指定用于自动扩展的指标，这里以CPU使用率为指标，当平均CPU使用率达到50%时，自动扩展Pod数量。
-    - **部署HPA**：运行`kubectl apply -f nginx-hpa.yaml` ，Kubernetes会根据CPU使用率自动调整Nginx Pod的数量。 
+    - 部署HPA：运行`kubectl apply -f nginx-hpa.yaml` ，Kubernetes会根据CPU使用率自动调整Nginx Pod的数量。 
