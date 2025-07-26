@@ -16,14 +16,14 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
 ```
-    - **验证安装**：安装完成后，运行`kubectl version --client` ，如果显示版本信息，则说明安装成功。
+    - 验证安装：安装完成后，运行`kubectl version --client` ，如果显示版本信息，则说明安装成功。
 4. **安装eksctl**：eksctl是用于创建和管理EKS集群的命令行工具。
     - **下载安装**：在Linux系统中，可使用如下命令安装：
 ```bash
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 sudo mv /tmp/eksctl /usr/local/bin
 ```
-    - **验证安装**：运行`eksctl version` ，若显示版本号，说明安装成功。
+    - 验证安装：运行`eksctl version` ，若显示版本号，说明安装成功。
 
 ### 三、使用EKS创建Kubernetes集群
 1. **网络规划（参考视频https://www.bilibili.com/video/BV11yeMeyEUC ）**：
